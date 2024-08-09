@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Database</title>
+    <script src="/static/script.js" defer></script>
+    <style>
+        /* Reset some basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        div {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        div:hover {
+            transform: translateY(-10px);
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #333;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        ul li:hover {
+            background-color: #e9e9e9;
+        }
+
+        #entryList,
+        #queryResultList {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        div,
+        ul li {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vector Database</h1>
+    <div>
+        <h2>Manage Tables</h2>
+        <input type="text" id="tableName" placeholder="Table Name">
+        <button onclick="createTable()">Create Table</button>
+        <button onclick="deleteTable()">Delete Table</button>
+        <select id="tableList" onchange="loadTableEntries()">
+            <!-- Options will be loaded dynamically -->
+        </select>
+    </div>
+
+    <div>
+        <h2>Manage Entries</h2>
+        <textarea id="entryText" placeholder="Entry Text"></textarea>
+        <button onclick="addEntry()">Add Entry</button>
+        <button onclick="deleteAllEntries()">Delete All Entries</button>
+        <ul id="entryList">
+            <!-- Entries will be loaded dynamically -->
+        </ul>
+    </div>
+
+    <div>
+        <h2>Query Entries</h2>
+        <input type="text" id="queryText" placeholder="Query Text">
+        <button onclick="queryEntries()">Query</button>
+        <ul id="queryResultList">
+            <!-- Query results will be loaded dynamically -->
+        </ul>
+    </div>
+
+    <div>
+        <h2>Semantic Split and Add Entries</h2>
+        <textarea id="semanticEntryText" placeholder="Entry Text to Split"></textarea>
+        <button onclick="splitAndAddEntry()">Split and Add Entry</button>
+    </div>
+</body>
+
+</html>
